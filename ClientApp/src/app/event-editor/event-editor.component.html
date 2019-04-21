@@ -1,0 +1,66 @@
+<mat-dialog-content>
+
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <h4>
+        #{{ data.data_seq }}
+      </h4>
+      <span class="example-fill-remaining-space"></span>
+      <mat-dialog-actions>
+        <span class="align-end">
+          <button mat-icon-button [mat-dialog-close]="data.animal" cdkFocusInitial>
+            <mat-icon>done</mat-icon>
+          </button>
+          <button mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </span>
+      </mat-dialog-actions>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="日期" [value]="data.date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>相關人員</mat-label>
+    <mat-select [formControl]="staff" multiple>
+      <mat-option *ngFor="let staff of staffList" [value]="staff">{{staff}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field>
+    <mat-label>最常用詞</mat-label>
+    <mat-select  multiple [(ngModel)]="quickSelect1"  [compareWith]="equals">
+      <mat-option *ngFor="let word of quickInput1" [value]="quickInput1">
+        {{word}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>最新用詞</mat-label>
+    <mat-select  multiple [(ngModel)]="quickSelect2" (focusOut)="selected2($event)">
+      <mat-option *ngFor="let word of quickInput2" [value]="quickInput2">
+        {{word}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <pre>{{ quickSelect1 |json }}</pre>
+
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="內容"></textarea>
+    {{ work_desc }} {{ quickSelect1 }} {{ quickSelect2 }}
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="通知相關人員">uscsofts@uscsoft.com.tw
+  </mat-form-field>
+
+
+</mat-dialog-content>

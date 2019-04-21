@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+.mat-row:hover {
+  /* background-color: #E3F2FD; */
+  background-image: radial-gradient(circle, white, rgb(230, 224, 224), rgba(192, 189, 189, 0.897));
+
+}
+
+.event-container {
+  height: 80vh;
+  overflow: auto;
+}
+
+.search {
+  margin: auto;
+  text-align: center;
+}
+
+.search-content {
+  width: 20vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}

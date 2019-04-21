@@ -1,0 +1,40 @@
+.mat-dialog-container {
+  height: 95vh;
+  width: 500vw;
+}
+
+.mat-raised-button {
+  margin: 5px;
+}
+
+.my-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 500px;
+}
+
+.my-container > * {
+  width: 100%;
+}
+
+.mat-row:hover {
+  /* background-color: #E3F2FD; */
+  background-image: radial-gradient(circle, white, rgb(230, 224, 224), rgba(192, 189, 189, 0.897));
+}
+
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.align-end {
+  align-content: flex-end
+}
+

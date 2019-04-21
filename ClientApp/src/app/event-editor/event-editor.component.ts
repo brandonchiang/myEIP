@@ -1,0 +1,59 @@
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+
+@Component({
+  selector: 'app-event-editor',
+  templateUrl: './event-editor.component.html',
+  styleUrls: ['./event-editor.component.css']
+})
+export class EventEditorComponent implements OnInit {
+
+  staff = new FormControl();
+  staffList: string[] = ['鄧寬敏', '江育勳', '鄭興國', '黃克農', '吳玉惠', '莊志鴻', '吳茂仁', '楊偉良', '王淑娥', '劉俐伶', '林粹倫', '郭永才', '張桂鳳', '謝安琪'];
+
+  quickInput1: string[] = ['外出', '請假', '上午', '下午'];
+  quickInput2: string[] = ['富邦', '安心', 'aa', 'bb'];
+
+  quickSelect1: string;
+  quickSelect2: string;
+  work_desc: string;
+
+  constructor(
+    public dialogRef: MatDialogRef<EventEditorComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any ) {
+    // console.log(data);
+  }
+
+  ngOnInit() {
+  }
+
+  selected1($event) {
+    // const target = event.source.selected._element.nativeElement;
+    // const selectedData = {
+    //   value: event.value,
+    //   text: target.innerText.trim()
+    // };
+    console.log($event);
+  }
+
+  selected2($event) {
+    // const target = event.source.selected._element.nativeElement;
+    // const selectedData = {
+    //   value: event.value,
+    //   text: target.innerText.trim()
+    // };
+    console.log($event);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  equals(objOne, objTwo) {
+    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
+      return objOne.id === objTwo.id;
+    }
+  }
+
+}

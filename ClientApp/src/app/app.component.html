@@ -1,0 +1,47 @@
+<mat-toolbar color="primary" class="toolbar-on-top">
+  <button mat-icon-button (click)="sideNav.toggle()">
+    <mat-icon>{{ sideNav.opened ? 'closed' : 'menu' }}</mat-icon>
+  </button>
+  <h1>EIP @ uscsoft.com.tw</h1>
+
+  <!-- 在這之後的都會被推到右邊去 -->
+  <span class="toolbar-seprator"></span>
+
+  <button mat-icon-button (click)="sideNavEnd.toggle()">
+    <mat-icon>message</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="EIP-container">
+  <mat-sidenav #sideNav [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'"
+    class="EIP-sidenav" (click)="(screenWidth > 840) ? '' : sideNav.close()">
+    <mat-nav-list>
+      <h3 matSubheader>
+        <mat-icon>bookmark</mat-icon>共用功能
+      </h3>
+      <a [routerLink]="['/', 'calendar']" mat-list-item>行事曆</a>
+      <a [routerLink]="['/', 'events']" mat-list-item>活動表</a>
+      <a [routerLink]="['/', 'staff']" mat-list-item>通訊錄</a>
+      <a [routerLink]="['/', 'board']" mat-list-item>公布欄</a>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>
+        <mat-icon>bookmark_border</mat-icon>個人功能
+      </h3>
+      <a [routerLink]="['/', 'todo']" mat-list-item>工作清單</a>
+      <a [routerLink]="['/', 'messenger']" mat-list-item>即時通訊</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav #sideNavEnd mode="over" position="end">
+    <mat-list>
+      <mat-list-item>選項設定</mat-list-item>
+      <mat-list-item>關於…</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

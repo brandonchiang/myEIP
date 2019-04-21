@@ -1,0 +1,55 @@
+<mat-dialog-content >
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span>{{ work_date | date:"yyyy/MM/dd" }}</span>
+      <span class="example-fill-remaining-space"></span>
+      <span class="align-end">
+        <button mat-icon-button color="primary" (click)="addnew($event)">
+          <mat-icon>add</mat-icon>
+        </button>
+            <button mat-icon-button (click)="onNoClick()">
+                <mat-icon>close</mat-icon>
+              </button>
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-table [dataSource]="eventDataSource">
+    <ng-container matColumnDef="data_seq">
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.DATA_SEQ }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>姓名</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.EMP_NAME }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="desc">
+      <mat-header-cell *matHeaderCellDef>說明</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.WORK_DESC }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef>修改</mat-header-cell>
+      <mat-cell *matCellDef="let row; let index = index ">
+        <button mat-icon-button color="primary" (click)="edit(row, index)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef>刪除</mat-header-cell>
+      <mat-cell *matCellDef="let row; let index = index ">
+        <button mat-icon-button color="warn" (click)="delete(row, index)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  </mat-table>
+</mat-dialog-content>
