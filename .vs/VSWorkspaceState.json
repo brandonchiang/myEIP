@@ -1,13 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\myEIP",
-    "\\myEIP\\ClientApp",
-    "\\myEIP\\ClientApp\\src",
-    "\\myEIP\\ClientApp\\src\\app",
-    "\\myEIP\\ClientApp\\src\\app\\calendar",
-    "\\myEIP\\ClientApp\\src\\app\\services"
+    "\\bin",
+    "\\Controllers"
   ],
-  "SelectedNode": "\\myEIP\\ClientApp\\e2e",
   "PreviewInSolutionExplorer": false
 }

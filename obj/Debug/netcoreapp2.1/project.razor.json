@@ -1,5 +1,5 @@
 {
-  "FilePath": "d:\\MyData\\Project\\myEIP\\EIP_WebAPI.csproj",
+  "FilePath": "d:\\MyData\\Project\\myEIP\\myEIP.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2678,6 +2678,6 @@
     ],
     "CSharpLanguageVersion": 703
   },
-  "RootNamespace": "EIP_WebAPI",
+  "RootNamespace": "myEIP",
   "Documents": []
 }

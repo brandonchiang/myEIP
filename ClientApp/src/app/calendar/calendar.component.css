@@ -18,10 +18,15 @@
 
 .event-card:hover {
   /* background-color: gradiant; */
-  background-image: radial-gradient(circle, white, rgb(230, 224, 224), rgba(192, 189, 189, 0.897));
+  /* background-image: radial-gradient(circle, rgb(232, 234, 246), rgb(92, 107, 192), rgba(40, 53, 147)); */
+  background-color: #ECF1F8;
+  border-width: 1px;
+  border-color: blue;
 }
 
 .today {
   color: rgb(240, 126, 126);
-  background-image: radial-gradient(circle, white, rgb(230, 224, 224), rgba(192, 189, 189, 0.897));
+  /* background-image: radial-gradient(circle, white, rgb(232, 234, 246), #ECF1F8); */
+  background-color: #fffbe5;
+
 }

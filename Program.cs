@@ -14,20 +14,20 @@ namespace myEIPWebAPI
     {
         public static void Main(string[] args)
         {
-            //CreateWebHostBuilder(args).Build().Run();
-            var configuration = new ConfigurationBuilder ()
-                .AddCommandLine (args)
-                .Build ();
+            CreateWebHostBuilder(args).Build().Run();
+            // var configuration = new ConfigurationBuilder ()
+            //     .AddCommandLine (args)
+            //     .Build ();
 
-            var host = new WebHostBuilder ()
-                .UseKestrel ()
-                .UseContentRoot (Directory.GetCurrentDirectory ())
-                .UseConfiguration (configuration)
-                .UseIISIntegration ()
-                .UseStartup<Startup> ()
-                .Build ();
+            // var host = new WebHostBuilder ()
+            //     .UseKestrel ()
+            //     .UseContentRoot (Directory.GetCurrentDirectory ())
+            //     .UseConfiguration (configuration)
+            //     .UseIISIntegration ()
+            //     .UseStartup<Startup> ()
+            //     .Build ();
 
-            host.Run ();            
+            // host.Run ();            
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
