@@ -16,13 +16,6 @@
   padding: 1px;
 }
 
-.event-card:hover {
-  /* background-color: gradiant; */
-  /* background-image: radial-gradient(circle, rgb(232, 234, 246), rgb(92, 107, 192), rgba(40, 53, 147)); */
-  background-color: #ECF1F8;
-  border-width: 1px;
-  border-color: blue;
-}
 
 .today {
   color: rgb(240, 126, 126);

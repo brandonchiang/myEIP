@@ -1,13 +1,13 @@
 
 .mat-card {
   width: 100vw;
+  border-color: blue
 }
 
 .mat-grid-tile {
   padding-left: 10px;
 }
 
-.mat-grid-tile :hover {
-  /* color: lemonchiffon; */
+/* .mat-grid-tile :hover {
   background-image: radial-gradient(circle, white, rgb(230, 224, 224), rgba(192, 189, 189, 0.897));
-}
+} */
