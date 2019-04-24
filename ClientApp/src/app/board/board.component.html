@@ -6,12 +6,12 @@
   <mat-grid-tile class="board-tile" *ngFor="let item of dataSource$ | async  ; let index = index" >
     <mat-card >
       <mat-card-header>
-        <mat-card-title>{{ item.Title }}</mat-card-title>
-        <mat-card-subtitle>{{ item.EntryID }}  {{ item.EntryTime | date: 'yyyy/MM/dd'}}</mat-card-subtitle>
+        <mat-card-title>{{ item.TITLE }}</mat-card-title>
+        <mat-card-subtitle>{{ item.ENTRY_ID }}  {{ item.ENTRY_TIME | date: 'yyyy/MM/dd'}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <blockquote class="blockquote">
-          <p class="mb-0">{{ item.Content }}</p>
+          <p class="mb-0">{{ item.CONTENT }}</p>
         </blockquote>
       </mat-card-content>
       <mat-card-footer>

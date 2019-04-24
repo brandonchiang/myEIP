@@ -1,6 +1,6 @@
 export interface IBoard {
-  Title: string;
-  Content: string;
-  EntryID: string;
-  EntryTime: Date;
+  TITLE: string;
+  CONTENT: string;
+  ENTRY_ID: string;
+  ENTRY_TIME: Date;
 }
