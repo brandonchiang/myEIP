@@ -2,26 +2,23 @@
   <mat-toolbar-row>公佈欄</mat-toolbar-row>
 </mat-toolbar>
 
-<mat-grid-list [cols]="breakpoint" rowHeight="180px">
+<mat-grid-list [cols]="breakpoint" rowHeight="200px">
   <mat-grid-tile class="board-tile" *ngFor="let item of dataSource$ | async  ; let index = index" >
-    <mat-card >
+    <mat-card class="board-card">
       <mat-card-header>
-        <mat-card-title>{{ item.Title }}</mat-card-title>
-        <mat-card-subtitle>{{ item.EntryID }}  {{ item.EntryTime | date: 'yyyy/MM/dd'}}</mat-card-subtitle>
+        <mat-card-title>{{ item.TITLE }}</mat-card-title>
+        <mat-card-subtitle>{{ item.ENTRY_ID }}  {{ item.ENTRY_TIME | date: 'yyyy/MM/dd'}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <blockquote class="blockquote">
-          <p class="mb-0">{{ item.Content }}</p>
+          <p class="mb-0">{{ item.CONTENT }}</p>
         </blockquote>
       </mat-card-content>
       <mat-card-footer>
-          <mat-card-actions align="end">
-              <button mat-raised-button >
-                我知道了
-              </button>
-              <button mat-raised-button >
-                留言
-              </button>
+          <mat-card-actions align="start">
+              <button mat-raised-button >留言</button>
+              <button mat-raised-button >修改</button>
+              <button mat-raised-button >刪除</button>
             </mat-card-actions>
       </mat-card-footer>
     </mat-card>

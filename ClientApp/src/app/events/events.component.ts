@@ -33,16 +33,16 @@ export class EventsComponent implements OnInit {
   }
 
   private getEvents() {
-    return this.eventService.getEvents()
-      .pipe(map(data => data.sort((d1: any, d2: any) => {
-        if (d1.WORK_DATE > d2.WORK_DATE) {
-          return 1;
-        }
-        if (d1.WORK_DATE < d2.WORK_DATE) {
-          return -1;
-        }
-        return 0;
-      })));
+    return this.eventService.getEvents();
+      // .pipe(map(data => data.sort((d1: any, d2: any) => {
+      //   if (d1.WORK_DATE > d2.WORK_DATE) {
+      //     return 1;
+      //   }
+      //   if (d1.WORK_DATE < d2.WORK_DATE) {
+      //     return -1;
+      //   }
+      //   return 0;
+      // })));
   }
 
   filterEvents(keyword: string) {

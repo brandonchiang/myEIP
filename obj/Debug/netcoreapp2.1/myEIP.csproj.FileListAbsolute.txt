@@ -1,0 +1,17 @@
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\myEIP.deps.json
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\myEIP.runtimeconfig.json
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\myEIP.runtimeconfig.dev.json
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\myEIP.dll
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\myEIP.pdb
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.csprojAssemblyReference.cache
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.csproj.CoreCompileInputs.cache
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.RazorAssemblyInfo.cache
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.RazorAssemblyInfo.cs
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.AssemblyInfoInputs.cache
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.AssemblyInfo.cs
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.RazorTargetAssemblyInfo.cache
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.dll
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.pdb
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\DynamicLinq.dll
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\DynamicLinq.pdb
+D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.csproj.CopyComplete

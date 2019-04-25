@@ -18,10 +18,12 @@ export class BoardService implements OnInit {
   }
 
   getBoard$(): Observable<IBoard[]> {
-    return this.http.get('/api/board').pipe(
-      tap((data: any) => console.log(data)),
-      map((data: any) => this.board$ =  data)
-    );
+    return this.http.get<any>('/api/board');
+    // return this.http.get('/api/board')
+    // .pipe(
+    //   tap((data: any) => console.log(data)),
+    //   map((data: any) => this.board$ =  data)
+    // );
   }
 
 
