@@ -1,11 +1,15 @@
 
-.mat-card {
-  width: 100vw;
-  border-color: blue
+.mat-grid-list {
+  background-color: rgb(245, 235, 223);
 }
 
-.mat-grid-tile {
-  padding-left: 10px;
+.board-card {
+  width: 80vw;
+}
+
+.board-tile {
+  margin: 10px;
+  padding: 10px;
 }
 
 /* .mat-grid-tile :hover {
