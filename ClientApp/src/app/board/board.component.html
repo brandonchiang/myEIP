@@ -2,25 +2,40 @@
   <mat-toolbar-row>公佈欄</mat-toolbar-row>
 </mat-toolbar>
 
-<mat-grid-list [cols]="breakpoint" rowHeight="200px">
-  <mat-grid-tile class="board-tile" *ngFor="let item of dataSource$ | async  ; let index = index" >
-    <mat-card class="board-card">
-      <mat-card-header>
-        <mat-card-title>{{ item.TITLE }}</mat-card-title>
-        <mat-card-subtitle>{{ item.ENTRY_ID }}  {{ item.ENTRY_TIME | date: 'yyyy/MM/dd'}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <blockquote class="blockquote">
-          <p class="mb-0">{{ item.CONTENT }}</p>
-        </blockquote>
-      </mat-card-content>
-      <mat-card-footer>
-          <mat-card-actions align="start">
-              <button mat-raised-button >留言</button>
-              <button mat-raised-button >修改</button>
-              <button mat-raised-button >刪除</button>
-            </mat-card-actions>
-      </mat-card-footer>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="board-container">
+  <mat-grid-list [cols]="breakpoint" rowHeight="200px">
+    <mat-grid-tile class="board-tile" *ngFor="let item of dataSource$ | async  ; let index = index">
+      <mat-card class="board-card">
+        <mat-card-header>
+          <img mat-card-avatar src="https://picsum.photos/300/300/?/random" />
+          <mat-card-title>{{ item.TITLE }}</mat-card-title>
+          <mat-card-subtitle>{{ item.ENTRY_ID }} {{ item.ENTRY_TIME | date: 'yyyy/MM/dd'}}</mat-card-subtitle>
+          <mat-card-actions align="end" class="flexbox">
+            <button mat-icon-button color="primary" (click)="edit(item, index)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="delete(item, index)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card-header>
+        <mat-card-content>
+          <blockquote class="blockquote">
+            <p class="mb-0">{{ item.CONTENT }}</p>
+          </blockquote>
+          <mat-divider></mat-divider>
+          <mat-card-actions id="board-action" class="flexbox">
+            <button mat-mini-fab color="basic" (click)="edit(item, index)">
+              <mat-icon>thumb_up</mat-icon>
+            </button>
+            <button mat-mini-fab color="basic" (click)="edit(item, index)">
+              <mat-icon>add_comment</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

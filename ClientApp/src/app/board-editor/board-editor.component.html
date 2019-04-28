@@ -1,0 +1,28 @@
+<mat-dialog-content>
+
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <h4>
+          #{{ data.DATA_SEQ | json }}
+        </h4>
+        <span class="example-fill-remaining-space"></span>
+        <mat-dialog-actions>
+          <span class="align-end">
+            <button mat-icon-button [mat-dialog-close]="data.animal" cdkFocusInitial>
+              <mat-icon>done</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onNoClick()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </span>
+        </mat-dialog-actions>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="內容"></textarea>
+        {{ data.CONTENT }}
+    </mat-form-field>
+
+
+  </mat-dialog-content>

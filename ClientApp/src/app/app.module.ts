@@ -39,6 +39,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { EventsService } from './services/events.service';
 import { EventbydayComponent } from './eventbyday/eventbyday.component';
 import { EventEditorComponent } from './event-editor/event-editor.component';
+import { BoardEditorComponent } from './board-editor/board-editor.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { EventEditorComponent } from './event-editor/event-editor.component';
     CalendarComponent,
     EventbydayComponent,
     EventEditorComponent,
+    BoardEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ import { EventEditorComponent } from './event-editor/event-editor.component';
   entryComponents: [
     EventsComponent,
     EventbydayComponent,
-    EventEditorComponent]
+    EventEditorComponent,
+    BoardEditorComponent]
 })
 export class AppModule { }
