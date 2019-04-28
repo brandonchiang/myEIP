@@ -6,6 +6,8 @@ import { MessengerComponent} from './messenger/messenger.component';
 import { BoardComponent } from './board/board.component';
 import { EventsComponent } from './events/events.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { TodoComponent } from './todo/todo.component';
+import { TimesheetComponent } from './timesheet/timesheet.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,7 +16,8 @@ const routes: Routes = [
   {path: 'calendar', component: CalendarComponent},
   {path: 'events', component: EventsComponent},
   {path: 'staff', component: StaffComponent},
-  {path: 'messenger', component: MessengerComponent},
+  {path: 'todo', component: TodoComponent},
+  {path: 'timesheet', component: TimesheetComponent},
 ];
 
 @NgModule({

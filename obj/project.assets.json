@@ -11855,9 +11855,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MyData\\Project\\myEIP\\myEIP.csproj",
+      "projectUniqueName": "d:\\MyData\\Project\\myEIP\\myEIP.csproj",
       "projectName": "myEIP",
-      "projectPath": "D:\\MyData\\Project\\myEIP\\myEIP.csproj",
+      "projectPath": "d:\\MyData\\Project\\myEIP\\myEIP.csproj",
       "packagesPath": "C:\\Users\\brandon\\.nuget\\packages\\",
       "outputPath": "d:\\MyData\\Project\\myEIP\\obj\\",
       "projectStyle": "PackageReference",

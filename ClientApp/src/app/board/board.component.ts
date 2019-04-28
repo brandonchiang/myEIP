@@ -17,7 +17,6 @@ export class BoardComponent implements OnInit {
 
   public dataSource$: Observable<IBoard[]>;
 
-
   constructor(private boardService: BoardService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar) { }
@@ -27,28 +26,40 @@ export class BoardComponent implements OnInit {
   }
 
   edit(row) {
-    this.dialog.open(BoardEditorComponent, {
+    const dialogRef = this.dialog.open(BoardEditorComponent, {
       width: '50vw',
       data: row
     });
+
+    const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        snack.dismiss();
+        this.snackBar.open('資料儲存中', 'update...', {
+          duration: 2000,
+        });
+
+        this.boardService.update(row)
+          .subscribe((s) => {
+            console.log(s);
+            this.dataSource$ = this.boardService.getBoard$();
+          });
+      }
+    });
   }
 
-  delete(row: IBoard, index: number) {
-    // this.eventService.delete(row.DATA_SEQ, this.today).subscribe(
-    //   data => {
-    //     this.eventDataSource = new MatTableDataSource(data);
-    //   },
-    //   error => console.log(error)
-    // );
-  }
-
-  openDeleteDialog() {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent,{
+  openDeleteDialog(row: IBoard, idx: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        message: 'Are you sure want to delete?',
+        message: '確認刪除 #' + row.DATA_SEQ + ':' + row.TITLE + '?',
         buttonText: {
-          ok: 'Save',
-          cancel: 'No'
+          ok: '是',
+          cancel: '否'
         }
       }
     });
@@ -61,9 +72,15 @@ export class BoardComponent implements OnInit {
         a.click();
         a.remove();
         snack.dismiss();
-        this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
+        this.snackBar.open('資料刪除中', 'delete...', {
           duration: 2000,
         });
+
+        this.boardService.delete(row.DATA_SEQ)
+          .subscribe((s) => {
+            console.log(s);
+            this.dataSource$ = this.boardService.getBoard$();
+          });
       }
     });
   }

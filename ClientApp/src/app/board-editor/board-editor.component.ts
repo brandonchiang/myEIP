@@ -19,7 +19,11 @@ export class BoardEditorComponent implements OnInit {
   ngOnInit() {
   }
 
-  onNoClick(): void {
+  onUpdate(): void {
+    this.dialogRef.close(true);
+  }
+
+  onClose(): void {
     this.dialogRef.close();
   }
 

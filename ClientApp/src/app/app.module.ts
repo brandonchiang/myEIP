@@ -43,6 +43,8 @@ import { EventEditorComponent } from './event-editor/event-editor.component';
 import { BoardEditorComponent } from './board-editor/board-editor.component';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './dialog/alert-dialog/alert-dialog.component';
+import { TodoComponent } from './todo/todo.component';
+import { TimesheetComponent } from './timesheet/timesheet.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { AlertDialogComponent } from './dialog/alert-dialog/alert-dialog.compone
     BoardEditorComponent,
     ConfirmDialogComponent,
     AlertDialogComponent,
+    TodoComponent,
+    TimesheetComponent,
   ],
   imports: [
     BrowserModule,
