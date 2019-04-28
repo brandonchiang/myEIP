@@ -6,6 +6,3 @@ table {
   background-image: radial-gradient(circle, white, rgb(230, 224, 224), rgba(192, 189, 189, 0.897));
 }
 
-.mat-cell:hover {
-  /* color: lemonchiffon; */
-}

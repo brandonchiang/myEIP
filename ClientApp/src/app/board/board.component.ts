@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IBoard } from '../interface/board';
 import { BoardService } from '../services/board.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { BoardEditorComponent } from '../board-editor/board-editor.component';
+import { ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-board',
@@ -18,7 +19,8 @@ export class BoardComponent implements OnInit {
 
 
   constructor(private boardService: BoardService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.dataSource$ = this.boardService.getBoard$();
@@ -38,6 +40,32 @@ export class BoardComponent implements OnInit {
     //   },
     //   error => console.log(error)
     // );
+  }
+
+  openDeleteDialog() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent,{
+      data: {
+        message: 'Are you sure want to delete?',
+        buttonText: {
+          ok: 'Save',
+          cancel: 'No'
+        }
+      }
+    });
+    const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        snack.dismiss();
+        this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
+          duration: 2000,
+        });
+      }
+    });
   }
 }
 

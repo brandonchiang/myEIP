@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+.eip-container {
+  width: 100%;
+  height: 80vh;
+  overflow: auto;
+}
 
 .mat-grid-tile :hover {
   background-color: #ECF1F8;

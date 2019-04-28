@@ -18,7 +18,8 @@ import {
   MatSortModule,
   MatPaginatorModule,
   MatDialogModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
@@ -40,6 +41,8 @@ import { EventsService } from './services/events.service';
 import { EventbydayComponent } from './eventbyday/eventbyday.component';
 import { EventEditorComponent } from './event-editor/event-editor.component';
 import { BoardEditorComponent } from './board-editor/board-editor.component';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
+import { AlertDialogComponent } from './dialog/alert-dialog/alert-dialog.component';
 
 
 @NgModule({
@@ -54,6 +57,8 @@ import { BoardEditorComponent } from './board-editor/board-editor.component';
     EventbydayComponent,
     EventEditorComponent,
     BoardEditorComponent,
+    ConfirmDialogComponent,
+    AlertDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +86,7 @@ import { BoardEditorComponent } from './board-editor/board-editor.component';
     MatSortModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatSnackBarModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
@@ -95,6 +101,9 @@ import { BoardEditorComponent } from './board-editor/board-editor.component';
     EventsComponent,
     EventbydayComponent,
     EventEditorComponent,
-    BoardEditorComponent]
+    BoardEditorComponent,
+    ConfirmDialogComponent,
+    AlertDialogComponent,
+  ]
 })
 export class AppModule { }

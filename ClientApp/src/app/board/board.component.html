@@ -2,7 +2,7 @@
   <mat-toolbar-row>公佈欄</mat-toolbar-row>
 </mat-toolbar>
 
-<div class="board-container">
+<div class="eip-container">
   <mat-grid-list [cols]="breakpoint" rowHeight="200px">
     <mat-grid-tile class="board-tile" *ngFor="let item of dataSource$ | async  ; let index = index">
       <mat-card class="board-card">
@@ -15,7 +15,7 @@
               <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button color="warn" (click)="delete(item, index)">
-              <mat-icon>delete</mat-icon>
+              <mat-icon (click)="openDeleteDialog()">delete</mat-icon>
             </button>
           </mat-card-actions>
         </mat-card-header>
