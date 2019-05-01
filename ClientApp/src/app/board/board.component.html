@@ -1,5 +1,12 @@
 <mat-toolbar>
-  <mat-toolbar-row>公佈欄</mat-toolbar-row>
+  <mat-toolbar-row>公佈欄
+    <span class="mat-action-remaining-space"></span>
+    <div align="end" class="flexbox">
+      <button mat-flat-button color="primary" (click)="add($event)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <div class="eip-container">
@@ -10,9 +17,9 @@
           <img mat-card-avatar src="https://picsum.photos/300/300/?/random" />
           <mat-card-title>{{ item.TITLE }} </mat-card-title>
           <mat-card-subtitle>{{ item.ENTRY_ID }} {{ item.ENTRY_TIME | date: 'yyyy/MM/dd'}}</mat-card-subtitle>
-        <span class="mat-action-remaining-space"></span>
-        <mat-card-actions align="end" class="flexbox">
-            <button mat-icon-button color="primary" >
+          <span class="mat-action-remaining-space"></span>
+          <mat-card-actions align="end" class="flexbox">
+            <button mat-icon-button color="primary">
               <mat-icon (click)="edit(item, idx)">edit</mat-icon>
             </button>
             <button mat-icon-button color="warn">
@@ -20,7 +27,7 @@
             </button>
           </mat-card-actions>
         </mat-card-header>
-        <mat-card-content >
+        <mat-card-content>
           <blockquote class="blockquote" [style.overflow]="'auto'" [style.height.px]="'50'">
             <p class="mb-0">{{ item.CONTENT }}</p>
           </blockquote>

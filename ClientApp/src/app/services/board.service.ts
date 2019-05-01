@@ -26,6 +26,22 @@ export class BoardService implements OnInit {
     // );
   }
 
+  addnew(data: IBoard): Observable<any> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        data,
+      },
+    };
+
+    data.ENTRY_ID = '@usc';
+    data.ENTRY_TIME = new Date();
+
+    return this.http.post('/api/board', data);
+  }
+
   update(data: IBoard): Observable<any> {
     const options = {
       headers: new HttpHeaders({

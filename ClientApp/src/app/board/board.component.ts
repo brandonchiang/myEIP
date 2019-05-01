@@ -25,7 +25,16 @@ export class BoardComponent implements OnInit {
     this.dataSource$ = this.boardService.getBoard$();
   }
 
+  add() {
+    this.openEditDialog({ DATA_SEQ: 0, TITLE: '', CONTENT: '' } );
+  }
+
+
   edit(row) {
+    this.openEditDialog(row);
+  }
+
+  openEditDialog(row?) {
     const dialogRef = this.dialog.open(BoardEditorComponent, {
       width: '50vw',
       data: row
@@ -44,11 +53,19 @@ export class BoardComponent implements OnInit {
           duration: 2000,
         });
 
-        this.boardService.update(row)
+        if (row.DATA_SEQ === 0) {
+          this.boardService.addnew(row)
           .subscribe((s) => {
             console.log(s);
             this.dataSource$ = this.boardService.getBoard$();
           });
+        } else {
+          this.boardService.update(row)
+          .subscribe((s) => {
+            console.log(s);
+            this.dataSource$ = this.boardService.getBoard$();
+          });
+        }
       }
     });
   }
