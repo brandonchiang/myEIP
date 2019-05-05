@@ -91,13 +91,6 @@ export class EventsService {
   }
 
   delete(data_seq: number) {
-    // this.events$ = this.httpClient.get('/./assets/Events.json').pipe(
-    // this.events$ = this.httpClient.get('/api/events').pipe(
-    //   map((data: EventModel[]) => {
-    //     return data.filter(event => event.DATA_SEQ !== data_seq && new Date(event.WORK_DATE) >= date && new Date(event.WORK_DATE) <= date);
-    //   }
-    //   ));
-    // console.log(this.events$);
     this.events$ = this.httpClient.delete('/api/events/' + data_seq);
     return this.events$;
   }

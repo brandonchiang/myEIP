@@ -30,13 +30,14 @@ export class EventbydayComponent implements OnInit {
   ngOnInit() {
     // this.eventDataSource$ = this.eventService.getEvents(new Date(this.date), new Date(this.date));
     this.work_date = this.data.date;
-    this.work_date.setHours(0, 0, 0);
-    this.eventService.getEvent(this.work_date).subscribe(
-      data => {
-        this.eventDataSource = new MatTableDataSource(data);
-      },
-      error => console.log(error)
-    );
+    // this.work_date.setHours(0, 0, 0);
+    this.getData();
+  }
+
+  private getData() {
+    this.eventService.getEvent(this.work_date).subscribe(data => {
+      this.eventDataSource = new MatTableDataSource(data);
+    }, error => console.log(error));
   }
 
   addnew($event) {
@@ -66,35 +67,39 @@ export class EventbydayComponent implements OnInit {
         snack.dismiss();
 
         // mat-select 的結果是 array ，傳給API前要轉成 string
-        row.EMP_NAME = row.EMP_NAME.join(',');
+        // row.EMP_NAME = row.EMP_NAME.join(',');
         if (row.DATA_SEQ === 0) {
-          this.snackBar.open('資料儲存中', row.WORK_DATE, {
-            duration: 2000,
+          this.snackBar.open('資料儲存中', 'addnew...', {
+            duration: 200,
           });
           // alert(JSON.stringify(row));
           // console.log('WORK_DATE @ component:' + row.WORK_DATE.toISOString());
 
           this.eventService.addnew(row)
             .subscribe((data) => {
-              this.eventDataSource = new MatTableDataSource(data);
+              this.getData();
             });
         } else {
           this.snackBar.open('資料儲存中', 'update...', {
-            duration: 2000,
+            duration: 200,
           });
           // alert(JSON.stringify(row));
 
           this.eventService.update(row)
             .subscribe((data) => {
-              // console.log(s);
-              this.eventDataSource = new MatTableDataSource(data);
+              this.getData();
             });
         }
       }
     });
   }
 
-  openDeleteDialog(row: EventModel, idx: number) {
+
+  delete(row: EventModel, index: number) {
+    this.openDeleteDialog(row);
+  }
+
+  openDeleteDialog(row: EventModel) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         message: '確認刪除 #' + row.DATA_SEQ + ':' + row.WORK_DESC + '?',
@@ -114,27 +119,18 @@ export class EventbydayComponent implements OnInit {
         a.remove();
         snack.dismiss();
         this.snackBar.open('資料刪除中', 'delete...', {
-          duration: 2000,
+          duration: 200,
         });
 
         this.eventService.delete(row.DATA_SEQ)
           .subscribe((data) => {
-            // console.log(data);
-            this.eventDataSource = new MatTableDataSource(data);
+            this.getData();
+            // this.eventDataSource = new MatTableDataSource(data);
           });
       }
     });
   }
 
-  delete(row: EventModel, index: number) {
-    // this.eventService.delete(row.DATA_SEQ);
-    this.eventService.delete(row.DATA_SEQ).subscribe(
-      data => {
-        this.eventDataSource = new MatTableDataSource(data);
-      },
-      error => console.log(error)
-    );
-  }
 
   onClose(): void {
     this.dialogRef.close();

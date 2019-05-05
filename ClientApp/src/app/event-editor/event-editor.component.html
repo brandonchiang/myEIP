@@ -27,7 +27,7 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>相關人員</mat-label>
-    <mat-select multiple [(ngModel)]="data.EMP_NAME" (selectionChange)="empNameSelectionChange($event.value)">
+    <mat-select [formControl]="staffs" multiple  (selectionChange)="empNameSelectionChange($event.value)">
       <mat-option *ngFor="let staff of staffList" [value]="staff">{{staff}}</mat-option>
     </mat-select>
   </mat-form-field>

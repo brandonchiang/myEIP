@@ -4,8 +4,9 @@ import { EventsService } from '../services/events.service';
 import { Observable } from 'rxjs';
 import { filter, map, toArray } from 'rxjs/operators';
 import { stringify } from '@angular/compiler/src/util';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar, MatDialogRef } from '@angular/material';
 import { EventbydayComponent } from '../eventbyday/eventbyday.component';
+import { EventEditorComponent } from '../event-editor/event-editor.component';
 
 // tslint:disable-next-line:class-name
 interface event {
@@ -36,7 +37,10 @@ export class CalendarComponent implements OnInit {
   public dataSource: EventModel;
 
   constructor(public eventService: EventsService,
-    public dialog: MatDialog) {
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
+    // public dialogRef: MatDialogRef<EventbydayComponent>,
+    ) {
     this.date = new Date();
   }
 
@@ -94,13 +98,6 @@ export class CalendarComponent implements OnInit {
       this.event_list.push({
         date: xdate, dateString: xdate.toLocaleDateString(), day: index, weekday: xdate.getDay(), event_desc: event_desc
       });
-      // const holidayEvents = { date: today, day: index, weekday: today.getDay(), event_desc: '' };
-
-      // if (today.getDay() === 0 || today.getDay() === 6) {
-      //   this.event_list.push(holidayEvents);
-      // } else {
-      //   this.event_list.push(workdayEvents);
-      // }
     }
   }
 
@@ -146,10 +143,28 @@ export class CalendarComponent implements OnInit {
 
   edit(data) {
     // alert(JSON.stringify(data));
-    this.dialog.open(EventbydayComponent, {
+    const dialogRef = this.dialog.open(EventbydayComponent, {
       width: '50vw',
       data: { date: data }
     });
+
+    const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (true) {
+        snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        snack.dismiss();
+        this.snackBar.open('更新畫面資料', 'refresh...', {
+          duration: 200,
+        });
+
+        this.showCalendar(this.date);
+      }
+    });
+
   }
 
 }

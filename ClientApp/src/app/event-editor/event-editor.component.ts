@@ -23,11 +23,18 @@ export class EventEditorComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EventEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: EventModel) {
-    // console.log(data);
+    // console.log('constructor:' + JSON.stringify(data));
+
+    this.bindData();
   }
 
   ngOnInit() {
   }
+
+  bindData() {
+    // const selectedList: any[] = this.data.EMP_NAME.split(',');
+    this.staffs.setValue(this.data.EMP_NAME.split(','));
+}
 
   selected1($event) {
     // const target = event.source.selected._element.nativeElement;
@@ -52,7 +59,8 @@ export class EventEditorComponent implements OnInit {
   }
 
   empNameSelectionChange($event) {
-    console.log($event.join(','));
+    // console.log($event.join(','));
+    this.data.EMP_NAME = $event.join(',');
   }
 
   onUpdate(): void {
