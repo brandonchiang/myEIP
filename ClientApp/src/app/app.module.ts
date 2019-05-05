@@ -28,7 +28,7 @@ import { MatListModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material';
 import { MessengerComponent } from './messenger/messenger.component';
 import { HomeComponent } from './home/home.component';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { USE_VALUE } from '@angular/core/src/di/injector';
@@ -46,6 +46,7 @@ import { AlertDialogComponent } from './dialog/alert-dialog/alert-dialog.compone
 import { TodoComponent } from './todo/todo.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
 
+import * as _moment from 'moment';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,8 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'zh-TW' },
+    // { provide: MAT_DATE_LOCALE, useValue: 'en-US' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
     StaffService,
     EventsService
   ],

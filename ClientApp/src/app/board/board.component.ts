@@ -56,13 +56,13 @@ export class BoardComponent implements OnInit {
         if (row.DATA_SEQ === 0) {
           this.boardService.addnew(row)
           .subscribe((s) => {
-            console.log(s);
+            // console.log(s);
             this.dataSource$ = this.boardService.getBoard$();
           });
         } else {
           this.boardService.update(row)
           .subscribe((s) => {
-            console.log(s);
+            // console.log(s);
             this.dataSource$ = this.boardService.getBoard$();
           });
         }

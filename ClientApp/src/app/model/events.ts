@@ -3,4 +3,6 @@ export interface EventModel {
   WORK_DATE: Date;
   EMP_NAME: string;
   WORK_DESC: string;
+  ENTRY_ID: string;
+  ENTRY_TIME: Date;
 }

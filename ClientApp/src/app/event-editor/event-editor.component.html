@@ -3,15 +3,15 @@
   <mat-toolbar>
     <mat-toolbar-row>
       <h4>
-        #{{ data.data_seq }}
+        #{{ data.DATA_SEQ }}
       </h4>
       <span class="example-fill-remaining-space"></span>
       <mat-dialog-actions>
         <span class="align-end">
-          <button mat-icon-button [mat-dialog-close]="data.animal" cdkFocusInitial>
+          <button mat-icon-button (click)="onUpdate()" cdkFocusInitial>
             <mat-icon>done</mat-icon>
           </button>
-          <button mat-icon-button (click)="onNoClick()">
+          <button mat-icon-button (click)="onClose()">
             <mat-icon>close</mat-icon>
           </button>
         </span>
@@ -20,20 +20,21 @@
   </mat-toolbar>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="日期" [value]="data.date">
+    <input matInput [matDatepicker]="picker" placeholder="日期" [ngModel]="data.WORK_DATE"
+      (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
     <mat-label>相關人員</mat-label>
-    <mat-select [formControl]="staff" multiple>
+    <mat-select multiple [(ngModel)]="data.EMP_NAME" (selectionChange)="empNameSelectionChange($event.value)">
       <mat-option *ngFor="let staff of staffList" [value]="staff">{{staff}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <br>
 
-  <mat-form-field>
+  <!-- <mat-form-field>
     <mat-label>最常用詞</mat-label>
     <mat-select  multiple [(ngModel)]="quickSelect1"  [compareWith]="equals">
       <mat-option *ngFor="let word of quickInput1" [value]="quickInput1">
@@ -49,13 +50,12 @@
         {{word}}
       </mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
 
-  <pre>{{ quickSelect1 |json }}</pre>
+  <!-- <pre>{{ quickSelect1 |json }}</pre> -->
 
   <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="內容"></textarea>
-    {{ work_desc }} {{ quickSelect1 }} {{ quickSelect2 }}
+    <textarea matInput placeholder="內容" [(ngModel)]="data.WORK_DESC"></textarea>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">

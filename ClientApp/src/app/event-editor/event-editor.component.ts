@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDatepickerInputEvent } from '@angular/material';
+import { EventModel } from '../model/events';
 
 @Component({
   selector: 'app-event-editor',
@@ -9,11 +10,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class EventEditorComponent implements OnInit {
 
-  staff = new FormControl();
+  staffs = new FormControl();
   staffList: string[] = ['鄧寬敏', '江育勳', '鄭興國', '黃克農', '吳玉惠', '莊志鴻', '吳茂仁', '楊偉良', '王淑娥', '劉俐伶', '林粹倫', '郭永才', '張桂鳳', '謝安琪'];
 
   quickInput1: string[] = ['外出', '請假', '上午', '下午'];
-  quickInput2: string[] = ['富邦', '安心', 'aa', 'bb'];
+  quickInput2: string[] = [];
 
   quickSelect1: string;
   quickSelect2: string;
@@ -21,7 +22,7 @@ export class EventEditorComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EventEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any ) {
+    @Inject(MAT_DIALOG_DATA) public data: EventModel) {
     // console.log(data);
   }
 
@@ -34,7 +35,7 @@ export class EventEditorComponent implements OnInit {
     //   value: event.value,
     //   text: target.innerText.trim()
     // };
-    console.log($event);
+    // console.log($event);
   }
 
   selected2($event) {
@@ -43,17 +44,24 @@ export class EventEditorComponent implements OnInit {
     //   value: event.value,
     //   text: target.innerText.trim()
     // };
-    console.log($event);
+    // console.log($event);
   }
 
-  onNoClick(): void {
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    // console.log(`${type}: ${event.value}`);
+  }
+
+  empNameSelectionChange($event) {
+    console.log($event.join(','));
+  }
+
+  onUpdate(): void {
+    this.dialogRef.close(true);
+  }
+
+  onClose(): void {
     this.dialogRef.close();
   }
 
-  equals(objOne, objTwo) {
-    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
-      return objOne.id === objTwo.id;
-    }
-  }
 
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using myEIPWebAPI.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace myEIPWebAPI.Controllers {
 
@@ -17,7 +18,7 @@ namespace myEIPWebAPI.Controllers {
         }
 
         //GET api/values
-        [HttpGet]
+        [HttpGet("top100")]
         public ActionResult<IEnumerable<Events>> Get () {
             using (var context = _context) {
                 return context.EIP_EVENTS.OrderByDescending (x => x.DATA_SEQ).Take (100).ToList ();
@@ -25,8 +26,14 @@ namespace myEIPWebAPI.Controllers {
         }
 
         // GET api/values
-        [HttpGet("{startDate}")]
-        public ActionResult<IEnumerable<Events>> Get (string startDate, string endDate, string keyword) {
+        [HttpGet()]
+        public ActionResult<IEnumerable<Events>> Get (
+            [FromQuery] string startDate ,
+            [FromQuery] string endDate ,
+            [FromQuery] string keyword 
+            ) {
+            //string startDate, string endDate, string keyword
+            // string startDate, string endDate, string keyword
             var v1 = DateTime.TryParse (startDate, out DateTime d1);
             var v2 = DateTime.TryParse (endDate, out DateTime d2);
             if (!v1) return null;
@@ -55,16 +62,40 @@ namespace myEIPWebAPI.Controllers {
             }
         }
 
-        // POST api/values
+        // POST api/values //新增
         [HttpPost]
-        public void Post ([FromBody] string value) { }
+        public ActionResult<Events> Post ([FromBody] Events events) {
+            using (var context = _context) {
+                events.WORK_DATE = events.WORK_DATE.ToLocalTime();
+                context.EIP_EVENTS.Add (events);
+                context.SaveChanges ();
+                return Get (events.DATA_SEQ);
+            }
+        }
 
-        // PUT api/values/5
-        [HttpPut ("{id}")]
-        public void Put (int id, [FromBody] string value) { }
+        // PUT api //修改
+        [HttpPut]
+        public ActionResult<Events> Put ([FromBody] Events events) {
+            using (var context = _context) {
+                var oriEvents = context.EIP_EVENTS.SingleOrDefault (c => c.DATA_SEQ == events.DATA_SEQ);
+                if (oriEvents != null) {
+                    context.Entry (oriEvents).CurrentValues.SetValues (events);
+                    context.SaveChanges ();
+                    return Ok ();
+                }
+                return BadRequest ();
+            }
+        }
 
         // DELETE api/values/5
         [HttpDelete ("{id}")]
-        public void Delete (int id) { }
+        public void Delete (int id) {
+            using (var context = _context) 
+            {
+                var events = new Events { DATA_SEQ = id};
+                context.Entry(events).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
     }
 }
