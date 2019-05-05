@@ -79,6 +79,7 @@ namespace myEIPWebAPI.Controllers {
             using (var context = _context) {
                 var oriEvents = context.EIP_EVENTS.SingleOrDefault (c => c.DATA_SEQ == events.DATA_SEQ);
                 if (oriEvents != null) {
+                    events.WORK_DATE = events.WORK_DATE.ToLocalTime();
                     context.Entry (oriEvents).CurrentValues.SetValues (events);
                     context.SaveChanges ();
                     return Ok ();

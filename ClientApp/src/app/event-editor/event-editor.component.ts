@@ -33,8 +33,10 @@ export class EventEditorComponent implements OnInit {
 
   bindData() {
     // const selectedList: any[] = this.data.EMP_NAME.split(',');
-    this.staffs.setValue(this.data.EMP_NAME.split(','));
-}
+    if (this.data.EMP_NAME !== null) {
+      this.staffs.setValue(this.data.EMP_NAME.split(','));
+    }
+  }
 
   selected1($event) {
     // const target = event.source.selected._element.nativeElement;
@@ -55,7 +57,8 @@ export class EventEditorComponent implements OnInit {
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    // console.log(`${type}: ${event.value}`);
+    console.log(`${type}: ${event.value}`);
+    this.data.WORK_DATE = event.value;
   }
 
   empNameSelectionChange($event) {

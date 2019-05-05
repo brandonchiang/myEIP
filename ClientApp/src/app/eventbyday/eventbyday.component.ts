@@ -15,7 +15,7 @@ import { ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.
 export class EventbydayComponent implements OnInit {
   work_date: Date;
 
-  displayedColumns: string[] = ['data_seq', 'name', 'desc', 'edit', 'delete'];
+  displayedColumns: string[] = ['edit', 'data_seq', 'name', 'desc',  'delete'];
   public eventDataSource$: Observable<EventModel[]>;
   eventDataSource: MatTableDataSource<any>;
 
@@ -31,10 +31,10 @@ export class EventbydayComponent implements OnInit {
     // this.eventDataSource$ = this.eventService.getEvents(new Date(this.date), new Date(this.date));
     this.work_date = this.data.date;
     // this.work_date.setHours(0, 0, 0);
-    this.getData();
+    this.getEvents();
   }
 
-  private getData() {
+  private getEvents() {
     this.eventService.getEvent(this.work_date).subscribe(data => {
       this.eventDataSource = new MatTableDataSource(data);
     }, error => console.log(error));
@@ -77,7 +77,7 @@ export class EventbydayComponent implements OnInit {
 
           this.eventService.addnew(row)
             .subscribe((data) => {
-              this.getData();
+              this.getEvents();
             });
         } else {
           this.snackBar.open('資料儲存中', 'update...', {
@@ -87,7 +87,7 @@ export class EventbydayComponent implements OnInit {
 
           this.eventService.update(row)
             .subscribe((data) => {
-              this.getData();
+              this.getEvents();
             });
         }
       }
@@ -124,7 +124,7 @@ export class EventbydayComponent implements OnInit {
 
         this.eventService.delete(row.DATA_SEQ)
           .subscribe((data) => {
-            this.getData();
+            this.getEvents();
             // this.eventDataSource = new MatTableDataSource(data);
           });
       }

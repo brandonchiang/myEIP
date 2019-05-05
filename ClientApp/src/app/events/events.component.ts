@@ -3,9 +3,10 @@ import { EventModel } from '../model/events';
 import { EventsService } from '../services/events.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MatTableDataSource, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatTableDataSource, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { EventEditorComponent } from '../event-editor/event-editor.component';
+import { ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-events',
@@ -24,7 +25,8 @@ export class EventsComponent implements OnInit {
   today: Date;
 
   constructor(private eventService: EventsService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) {
     this.today = new Date();
   }
 
@@ -34,15 +36,6 @@ export class EventsComponent implements OnInit {
 
   private getEvents() {
     return this.eventService.getEvents();
-      // .pipe(map(data => data.sort((d1: any, d2: any) => {
-      //   if (d1.WORK_DATE > d2.WORK_DATE) {
-      //     return 1;
-      //   }
-      //   if (d1.WORK_DATE < d2.WORK_DATE) {
-      //     return -1;
-      //   }
-      //   return 0;
-      // })));
   }
 
   filterEvents(keyword: string) {
@@ -54,18 +47,86 @@ export class EventsComponent implements OnInit {
   }
 
   edit(row: EventModel) {
-    this.dialog.open(EventEditorComponent, {
+    this.openEditDialog(row);
+  }
+  openEditDialog(row?) {
+    const dialogRef = this.dialog.open(EventEditorComponent, {
       width: '50vw',
-      data: { data_seq: row.DATA_SEQ, date: new Date(row.WORK_DATE) }
+      data: row
+    });
+
+    const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        snack.dismiss();
+
+        // mat-select 的結果是 array ，傳給API前要轉成 string
+        // row.EMP_NAME = row.EMP_NAME.join(',');
+        if (row.DATA_SEQ === 0) {
+          this.snackBar.open('資料儲存中', 'addnew...', {
+            duration: 200,
+          });
+          // alert(JSON.stringify(row));
+          // console.log('WORK_DATE @ component:' + row.WORK_DATE.toISOString());
+
+          this.eventService.addnew(row)
+            .subscribe((data) => {
+              this.getEvents();
+            });
+        } else {
+          this.snackBar.open('資料儲存中', 'update...', {
+            duration: 200,
+          });
+          // alert(JSON.stringify(row));
+
+          this.eventService.update(row)
+            .subscribe((data) => {
+              this.getEvents();
+            });
+        }
+      }
     });
   }
 
   delete(row: EventModel, index: number) {
-    // this.eventService.delete(row.DATA_SEQ, this.today).subscribe(
-    //   data => {
-    //     this.eventDataSource = new MatTableDataSource(data);
-    //   },
-    //   error => console.log(error)
-    // );
+    this.openDeleteDialog(row);
   }
+
+  openDeleteDialog(row: EventModel) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: '確認刪除 #' + row.DATA_SEQ + ':' + row.WORK_DESC + '?',
+        buttonText: {
+          ok: '是',
+          cancel: '否'
+        }
+      }
+    });
+    const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        snack.dismiss();
+        this.snackBar.open('資料刪除中', 'delete...', {
+          duration: 200,
+        });
+
+        this.eventService.delete(row.DATA_SEQ)
+          .subscribe((data) => {
+            this.getEvents();
+            // this.eventDataSource = new MatTableDataSource(data);
+          });
+      }
+    });
+  }
+
 }
