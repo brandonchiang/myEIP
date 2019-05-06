@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDatepickerInputEvent } from '@angular/material';
-import { EventModel } from '../model/events';
+import { IEvent } from '../model/events';
 
 @Component({
   selector: 'app-event-editor',
@@ -22,7 +22,7 @@ export class EventEditorComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EventEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: EventModel) {
+    @Inject(MAT_DIALOG_DATA) public data: IEvent) {
     // console.log('constructor:' + JSON.stringify(data));
 
     this.bindData();

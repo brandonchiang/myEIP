@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { EventModel } from '../model/events';
+import { IEvent } from '../model/events';
 import { Observable } from 'rxjs';
 import { map, filter, catchError, tap, flatMap } from 'rxjs/operators';
 import { MatCardLgImage } from '@angular/material';
@@ -23,9 +23,9 @@ export class EventsService {
     return new Date(y, m, 0).getDate();
   };
 
-  getEvents(fromDate?: Date, toDate?: Date): Observable<EventModel[]> {
+  getEvents(fromDate?: Date, toDate?: Date): Observable<IEvent[]> {
     if (fromDate === undefined) {
-      return this.httpClient.get<EventModel[]>('/api/events');
+      return this.httpClient.get<IEvent[]>('/api/events');
     } else {
       // alert(fromDate + '/' + toDate);
       const d1 = new Date(fromDate);
@@ -41,12 +41,12 @@ export class EventsService {
     }
   }
 
-  getEvent(date: Date): Observable<EventModel[]> {
+  getEvent(date: Date): Observable<IEvent[]> {
     // alert('getEvent:' + date);
     return this.getEvents(new Date(date), new Date(date));
   }
 
-  searchEvents(fromDate?: Date, toDate?: Date, keyword?: string): Observable<EventModel[]> {
+  searchEvents(fromDate?: Date, toDate?: Date, keyword?: string): Observable<IEvent[]> {
     if (fromDate === undefined) { fromDate = this.minDate; }
     if (toDate === undefined) { toDate = this.maxDate; }
     if (keyword === undefined) { keyword = ''; }
@@ -59,7 +59,7 @@ export class EventsService {
     return this.events$;
   }
 
-  addnew(data: EventModel): Observable<any> {
+  addnew(data: IEvent): Observable<any> {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -69,14 +69,14 @@ export class EventsService {
       },
     };
 
-    console.log('WORK_DATE @ service:' + data.WORK_DATE.toISOString());
+    // console.log('WORK_DATE @ service:' + data.WORK_DATE.toISOString());
     data.ENTRY_ID = '@usc';
     data.ENTRY_TIME = new Date();
 
     return this.httpClient.post('/api/events', data);
   }
 
-  update(data: EventModel): Observable<any> {
+  update(data: IEvent): Observable<any> {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

@@ -1,4 +1,4 @@
-export interface EventModel {
+export interface IEvent {
   DATA_SEQ: number;
   WORK_DATE: Date;
   EMP_NAME: string;

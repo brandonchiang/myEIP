@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IBoard } from '../interface/board';
+import { IBoard } from '../model/board';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -11,14 +11,14 @@ export class BoardService implements OnInit {
 
   board$: Observable<IBoard[]>;
 
-  constructor(private http: HttpClient) {  }
+  constructor(private httpClient: HttpClient) {  }
 
   ngOnInit(): void {
 
   }
 
   getBoard$(): Observable<IBoard[]> {
-    return this.http.get<any>('/api/board');
+    return this.httpClient.get<any>('/api/board');
     // return this.http.get('/api/board')
     // .pipe(
     //   tap((data: any) => console.log(data)),
@@ -39,7 +39,7 @@ export class BoardService implements OnInit {
     data.ENTRY_ID = '@usc';
     data.ENTRY_TIME = new Date();
 
-    return this.http.post('/api/board', data);
+    return this.httpClient.post('/api/board', data);
   }
 
   update(data: IBoard): Observable<any> {
@@ -52,7 +52,7 @@ export class BoardService implements OnInit {
       },
     };
 
-    return this.http.put('/api/board', data);
+    return this.httpClient.put('/api/board', data);
   }
 
   delete(data_seq: number): Observable<any> {
@@ -65,7 +65,7 @@ export class BoardService implements OnInit {
       // },
     };
 
-    return this.http.delete('/api/board/' + data_seq, options);
+    return this.httpClient.delete('/api/board/' + data_seq, options);
   }
 
 }

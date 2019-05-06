@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { EventModel } from '../model/events';
+import { IEvent } from '../model/events';
 import { EventsService } from '../services/events.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,7 +16,7 @@ import { ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.
 export class EventsComponent implements OnInit {
 
   displayedColumns: string[] = ['edit', 'data_seq', 'date', 'name', 'desc',  'delete'];
-  public dataSource$: Observable<EventModel[]>;
+  public dataSource$: Observable<IEvent[]>;
   eventDataSource: MatTableDataSource<any>;
 
   filterFrom: Date;
@@ -46,7 +46,7 @@ export class EventsComponent implements OnInit {
     }
   }
 
-  edit(row: EventModel) {
+  edit(row: IEvent) {
     this.openEditDialog(row);
   }
   openEditDialog(row?) {
@@ -93,11 +93,11 @@ export class EventsComponent implements OnInit {
     });
   }
 
-  delete(row: EventModel, index: number) {
+  delete(row: IEvent, index: number) {
     this.openDeleteDialog(row);
   }
 
-  openDeleteDialog(row: EventModel) {
+  openDeleteDialog(row: IEvent) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         message: '確認刪除 #' + row.DATA_SEQ + ':' + row.WORK_DESC + '?',

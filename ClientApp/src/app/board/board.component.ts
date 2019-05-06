@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IBoard } from '../interface/board';
+import { IBoard } from '../model/board';
 import { BoardService } from '../services/board.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { BoardEditorComponent } from '../board-editor/board-editor.component';

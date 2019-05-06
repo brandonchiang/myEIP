@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EventModel } from '../model/events';
+import { IEvent } from '../model/events';
 import { EventsService } from '../services/events.service';
 import { MatTableDataSource, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -16,7 +16,7 @@ export class EventbydayComponent implements OnInit {
   work_date: Date;
 
   displayedColumns: string[] = ['edit', 'data_seq', 'name', 'desc',  'delete'];
-  public eventDataSource$: Observable<EventModel[]>;
+  public eventDataSource$: Observable<IEvent[]>;
   eventDataSource: MatTableDataSource<any>;
 
   constructor(private eventService: EventsService,
@@ -45,7 +45,7 @@ export class EventbydayComponent implements OnInit {
     this.openEditDialog({ DATA_SEQ: 0, WORK_DATE: this.work_date });
   }
 
-  edit(row: EventModel) {
+  edit(row: IEvent) {
     // console.log(row.WORK_DATE);
     this.openEditDialog(row);
   }
@@ -95,11 +95,11 @@ export class EventbydayComponent implements OnInit {
   }
 
 
-  delete(row: EventModel, index: number) {
+  delete(row: IEvent, index: number) {
     this.openDeleteDialog(row);
   }
 
-  openDeleteDialog(row: EventModel) {
+  openDeleteDialog(row: IEvent) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         message: '確認刪除 #' + row.DATA_SEQ + ':' + row.WORK_DESC + '?',

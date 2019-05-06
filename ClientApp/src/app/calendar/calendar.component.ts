@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventModel } from '../model/events';
+import { IEvent } from '../model/events';
 import { EventsService } from '../services/events.service';
 import { Observable } from 'rxjs';
 import { filter, map, toArray } from 'rxjs/operators';
@@ -28,13 +28,13 @@ export class CalendarComponent implements OnInit {
 
   // list = this.originalList;
   event_list: event[] = [];
-  public dataSource$: Observable<EventModel[]>;
+  public dataSource$: Observable<IEvent[]>;
   breakpoint = 7;
   date: Date;
   today: Date;
   yyyymm: any;
 
-  public dataSource: EventModel;
+  public dataSource: IEvent;
 
   constructor(public eventService: EventsService,
     private snackBar: MatSnackBar,
@@ -59,13 +59,13 @@ export class CalendarComponent implements OnInit {
     const firstDay = new Date(yyyy, mm - 1, 1);
     const lastDay = new Date(yyyy, mm - 1, this.lastday(yyyy, mm));
     this.eventService.getEvents(firstDay, lastDay).subscribe(
-      (data: EventModel[]) => {
+      (data: IEvent[]) => {
         this.fillCalendar(_date, data);
       }
     );
   }
 
-  fillCalendar(_date: Date, item: EventModel[]) {
+  fillCalendar(_date: Date, item: IEvent[]) {
     this.yyyymm = _date.toString();
     const dd = _date.getDate();
     const mm = _date.getMonth() + 1;
