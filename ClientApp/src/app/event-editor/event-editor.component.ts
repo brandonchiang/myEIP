@@ -33,7 +33,7 @@ export class EventEditorComponent implements OnInit {
 
   bindData() {
     // const selectedList: any[] = this.data.EMP_NAME.split(',');
-    if (this.data.EMP_NAME !== null) {
+    if (this.data.EMP_NAME !== null && this.data.EMP_NAME !== undefined ) {
       this.staffs.setValue(this.data.EMP_NAME.split(','));
     }
   }

@@ -47,6 +47,7 @@ namespace myEIPWebAPI.Model
         public string VOUCHER_REMARK {get;set;}
         public string CORP_EMAIL {get;set;}
         public string CLOSE_YN {get;set;}
+        public string TODAY_EVENTS {get;set;}
 
     }
 
