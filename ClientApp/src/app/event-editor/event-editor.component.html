@@ -20,7 +20,7 @@
   </mat-toolbar>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="日期"
+    <input matInput [matDatepicker]="picker" placeholder="日期" [(ngModel)]="data.WORK_DATE"
       (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>

@@ -57,7 +57,7 @@ export class EventEditorComponent implements OnInit {
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    console.log(`${type}: ${event.value}`);
+    // console.log(`${type}: ${event.value}`);
     this.data.WORK_DATE = event.value;
   }
 
