@@ -52,6 +52,7 @@ export class CalendarComponent implements OnInit {
     this.showCalendar(this.date);
   }
 
+
   showCalendar(_date: Date) {
     const dd = _date.getDate();
     const mm = _date.getMonth() + 1;

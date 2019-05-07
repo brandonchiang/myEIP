@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { IEvent } from '../model/events';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map, filter, catchError, tap, flatMap } from 'rxjs/operators';
 import { MatCardLgImage } from '@angular/material';
 
@@ -14,6 +14,9 @@ export class EventsService {
   maxDate = new Date(8640000000000000);
   minDate = new Date(-8640000000000000);
   http: any;
+
+  private eventsSubject = new Subject<any>();
+  public events = this.eventsSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {
 
@@ -36,8 +39,12 @@ export class EventsService {
         params = params.append('startDate', d1.toDateString());
         params = params.append('endDate', d2.toDateString());
         // alert(params);
-        this.events$ = this.httpClient.get('/api/events', {params: params});
-      return this.events$;
+        this.events$ = this.httpClient.get('/api/events', {params: params}).subscribe(data =>
+          this.eventsSubject.next(data)
+        );
+      // return this.events$;
+
+      return this.eventsSubject;
     }
   }
 
