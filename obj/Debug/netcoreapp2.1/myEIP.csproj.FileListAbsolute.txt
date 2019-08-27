@@ -15,3 +15,6 @@ D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.pdb
 D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\DynamicLinq.dll
 D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\DynamicLinq.pdb
 D:\MyData\Project\myEIP\obj\Debug\netcoreapp2.1\myEIP.csproj.CopyComplete
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\appsettings.Development.json
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\appsettings.json
+D:\MyData\Project\myEIP\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
